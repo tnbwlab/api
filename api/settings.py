@@ -23,10 +23,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'v_)msd7l2&k5ff1-oqo*cpdtf_%(rv8!!3@oj5@2zw#8p!et74'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #True
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 # Application definition
 
@@ -40,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'product',
     'api',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
