@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import handler404, handler500
 from api import views as api_views
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
+    path('', api_views.HomeView.as_view()),
+    path('token/', obtain_auth_token),
     path('admin/', admin.site.urls),
     path('product/', include('product.urls')),
 ]
