@@ -18,8 +18,16 @@ from django.urls import path, include
 from django.conf.urls import handler404, handler500
 from api import views as api_views
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
 
 urlpatterns = [
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('', api_views.HomeView.as_view()),
     path('token/', obtain_auth_token),
     path('admin/', admin.site.urls),
